@@ -1,0 +1,104 @@
+# Provide path to the data set given as .npz or .extxyz file.
+data_path: datasets/ala2_test.extxyz
+data_seed: 1                                                              # data seed to make experiments reproducible
+# Alternative one can define train, valid and test data sets separately. For this purpose, uncomment the line below
+# and comment the line containing "data_path".
+# train_data_path: <train_data_path>
+# valid_data_path: <valid_data_path>
+
+# For .npz files one can provide a mapping to make a custom data set readable by our model. Default mapping is:
+# {'R': 'positions', 'C': 'cell', 'Z': 'numbers', 'E': 'energy', 'F': 'forces', 'N': 'n_atoms'}
+key_mapping:
+  R: positions                                                                  # raw atomic positions
+  C: cell                                                                       # periodic box
+  Z: numbers                                                                    # atomic species, integers
+  E: energy                                                                     # total potential energies to train to
+  F: forces                                                                     # atomic forces to train to
+  N: n_atoms                                                                    # number of atoms
+
+# Atomic types provided by the data set. If not specified all elements with Z <= 119 are used (default).
+atomic_types:
+  - H
+  - C
+  - N
+  - O
+
+r_cutoff: 5.0
+
+n_train: 256
+n_valid: 128
+
+train_batch_size: 32
+eval_batch_size: 128
+
+# Define method for computing neighbors. Possible methods: matscipy (default), ase, primitive, torch.
+neighbors: matscipy
+
+# model
+model_path: models/ala2
+model_seeds:
+  - 0
+device: 'cuda:0'
+
+hidden_sizes:
+  - 512
+  - 512
+
+n_radial: 5
+n_basis: 7
+n_contr: 8
+emb_init: uniform
+
+representation_tfms: 
+
+output_tfms:
+  - atomic_scale_shift
+
+# transfer learning part
+init_paths: # default None
+#  - model/ethanol_10/0/best/ckpt_970/
+
+init_modules: # define modules which have to be initialized from pre-trained model
+  - representation
+  - mlp
+    #  - output_tfms
+
+# training
+max_epoch: 1000
+save_epoch: 100
+valid_epoch: 1
+
+# beta_2: 0.999
+
+base_lr: 0.02
+weight_lr_factors: 1.5
+#  - 0.5
+#  - 1.0
+#  - 1.5
+scale_lr_factor: 0.05
+shift_lr_factor: 2.5
+emb_lr_factor: 1.0
+
+train_loss:
+  type: weighted_sum
+  losses:
+    - type: energy_sse
+    - type: forces_sse
+  weights:
+    - 1.0
+    - 4.0
+
+early_stopping_loss:
+  type: weighted_sum
+  losses:
+    - type: energy_mae
+    - type: forces_mae
+  weights:
+    - 1.0
+    - 1.0
+
+eval_losses:
+    - type: energy_rmse
+    - type: energy_mae
+    - type: forces_rmse
+    - type: forces_mae

@@ -1,0 +1,39 @@
+name: alebrew-cpu
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+    - python=3.10
+    - pip>=2.3
+    - pytorch
+    - torchvision
+    - torchaudio
+    - cpuonly
+    - jupyter
+    - scikit-learn
+    - scipy
+    - pandas
+    - pandas-datareader
+    - matplotlib
+    - pillow
+    - tqdm
+    - requests
+    - h5py
+    - pyyaml
+    - flask
+    - boto3
+    - ipykernel
+    - pip:
+        - bmdal_reg
+        - torchmd
+        - parmed
+        - dill
+        - matscipy
+        - fire
+        - bayesian-optimization
+        - gym
+        - kaggle
+        - ase
+        - sphinx
+        - sphinx_rtd_theme
