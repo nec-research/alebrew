@@ -234,7 +234,7 @@ class AtomicScaleShift(nn.Module):
         # shape of scale, shift, and factor parameters: n_species
         # we allow different scale_parameters for different atoms
         # at initialization, different to previous implementation
-        self.factors = nn.Parameter(torch.as_tensor(scale_params, dtype=torch.float32), requires_grad=False)
+        self.register_buffer('factors', torch.as_tensor(scale_params, dtype=torch.float32))
         # re-scale parameters to aid training process
         self.scale_params = nn.Parameter(torch.ones(*scale_params.shape))
         self.shift_params = nn.Parameter(torch.as_tensor(shift_params, dtype=torch.float32) / self.factors)

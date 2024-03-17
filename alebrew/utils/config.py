@@ -199,8 +199,8 @@ DEFAULT_CONFIG = dict(
     valid_epoch=1,
     base_lr=0.02,
     weight_lr_factors=1.5,
-    scale_lr_factor=0.05,
-    shift_lr_factor=2.5,
+    scale_lr_factor=2.5,
+    shift_lr_factor=0.05,
     emb_lr_factor=1.0,
     train_loss={
         'type': 'weighted_sum',
