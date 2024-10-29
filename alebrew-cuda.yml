@@ -34,6 +34,6 @@ dependencies:
         - bayesian-optimization
         - gym
         - kaggle
-        - ase
+        - ase==3.22.1
         - sphinx
         - sphinx_rtd_theme

@@ -1,6 +1,6 @@
 # ALEBREW: The Atomic Learning Environment for Building REliable interatomic neural netWork potentials
 
-Official repository for the [paper](https://arxiv.org/abs/2312.01416) _"Uncertainty-biased molecular dynamics for learning uniformly accurate interatomic potentials"_. It comprises the package for building uniformly accurate machine-learned interatomic potentials using uncertainty-biased molecular dynamics and active learning. Data sets generated using this package and the configuration files necessary to reproduce the main results of the paper can be found at [Zenodo](https://doi.org/10.5281/zenodo.10776838). The logo for ALEBREW has been generated using DALL-E.
+Official repository for the [paper](https://doi.org/10.1038/s41524-024-01254-1) _"Uncertainty-biased molecular dynamics for learning uniformly accurate interatomic potentials"_. It comprises the package for building uniformly accurate machine-learned interatomic potentials using uncertainty-biased molecular dynamics and active learning. Data sets generated using this package and the configuration files necessary to reproduce the main results of the paper can be found at [Zenodo](https://doi.org/10.5281/zenodo.10776838). The logo for ALEBREW has been generated using DALL-E.
 
 ![ALEBREW](alebrew.png)
 
@@ -8,14 +8,19 @@ Official repository for the [paper](https://arxiv.org/abs/2312.01416) _"Uncertai
 
 Please consider citing us if you find the code and paper useful:
 
-    @misc{zaverkin2023uncertaintybiased,
-      title={Uncertainty-biased molecular dynamics for learning uniformly accurate interatomic potentials}, 
-      author={Viktor Zaverkin and David Holzmüller and Henrik Christiansen and Federico Errica and Francesco Alesiani and Makoto Takamoto and Mathias Niepert and Johannes Kästner},
-      year={2023},
-      eprint={2312.01416},
-      archivePrefix={arXiv},
-      primaryClass={physics.comp-ph}
-    }
+    @article{Zaverkin2024,
+             author={Zaverkin, Viktor and Holzm{\"u}ller, David and Christiansen, Henrik and Errica, Federico and Alesiani, Francesco and Takamoto, Makoto and Niepert, Mathias and K{\"a}stner, Johannes},
+             title={Uncertainty-biased molecular dynamics for learning uniformly accurate interatomic potentials},
+             journal={npj Computational Materials},
+             year={2024},
+             month={Apr},
+             day={29},
+             volume={10},
+             number={1},
+             pages={83},
+             issn={2057-3960},
+             doi={10.1038/s41524-024-01254-1},
+             url={https://doi.org/10.1038/s41524-024-01254-1}}
 
 ## Implemented methods
 
@@ -36,7 +41,7 @@ This source code has a non-commercial license; see `LICENSE.txt` for more detail
 
 ## Requirements
 
-An environment with [PyTorch](https://pytorch.org/get-started/locally/) (>=2.0.0), [BMDAL-REG](https://github.com/dholzmueller/bmdal_reg) (version 3) and [ASE](https://wiki.fysik.dtu.dk/ase/) (>=3.22.1) installed.  Also, some other dependencies may be necessary; see `alebrew-{cuda,cpu,mps}.yml` files.
+An environment with [PyTorch](https://pytorch.org/get-started/locally/) (>=2.0.0), [BMDAL-REG](https://github.com/dholzmueller/bmdal_reg) (version 3) and [ASE](https://wiki.fysik.dtu.dk/ase/) (==3.22.1) installed.  Also, some other dependencies may be necessary; see `alebrew-{cuda,cpu,mps}.yml` files.
 
 ## Installation
 
@@ -54,4 +59,4 @@ For the more complicated task of generating training data sets and training mach
 
 ## How to reproduce the results from the paper
 
-To reproduce the results from the [paper](https://arxiv.org/abs/2312.01416) replace the parameters in the provided Jupyter notebook, i.e., `examples/using_alebrew.ipynb`, by those presented in the `config.yaml` files from `{ala2-ffs,mil53}/{task}/{learning_method}` at [Zenodo](https://doi.org/10.5281/zenodo.10776838). See also docstrings in `alebrew/task_execuption.py` for more information on possible parameters.
+To reproduce the results from the [paper](https://doi.org/10.1038/s41524-024-01254-1) replace the parameters in the provided Jupyter notebook, i.e., `examples/using_alebrew.ipynb`, by those presented in the `config.yaml` files from `{ala2-ffs,mil53}/{task}/{learning_method}` at [Zenodo](https://doi.org/10.5281/zenodo.10776838). See also docstrings in `alebrew/task_execuption.py` for more information on possible parameters.
